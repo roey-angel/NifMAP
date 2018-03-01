@@ -10,6 +10,7 @@
 #                 2. FrameBot - https://github.com/rdpstaff/Framebot
 #                 3. seqmagick - https://fhcrc.github.io/seqmagick/
 #                 4. CART - https://wwwzehr.pmc.ucsc.edu/CART_model_public/
+#                 5. R - https://www.r-project.org/
 #bash_version   :4.3.48(1)-release
 #============================================================================
 
@@ -68,7 +69,7 @@ java -jar ${FRAMEBOTPATH}/FrameBot.jar framebot -N -l 30 -i 0.4 -o ${inputReads%
 # Corrected AA sequences are in ${inputReads%.fa}_corr_prot.fasta
 # Screen with hmm to identify all hits
 hmmscan --domtblout ${WORKFOLDER}/hmmOut.out -o ${WORKFOLDER}/junk_NifH_ChlL_bchX ${RESOURCEFOLDER}/NifH_ChlL_bchX.hmm ${WORKFOLDER}/${inputReads%.fa}_corr_prot.fasta
-R<${HOMEFOLDER}/nifH_bch_hmmEvaluation.R --no-save ${WORKFOLDER}/hmmOut.out
+Rscript --vanilla < ${HOMEFOLDER}/nifH_bch_hmmEvaluation.R ${WORKFOLDER}/hmmOut.out
 mv nifH_bch_hmmEvaluation.pdf ${RESULTSFOLDER}
 cat hmmOut.out | awk 'NR>3{if($8>bitarray[$4]){bitarray[$4]=$8;outArray[$4]=$1"\t"$4}}END{for(entry in outArray){print outArray[entry]}}' > assignments.txt
 cp hmmOut.out ${RESULTSFOLDER}/nifH_bch_hmmEvaluation.hmm.out

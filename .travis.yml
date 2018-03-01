@@ -1,0 +1,7 @@
+matrix:
+  include:
+    - language: bash
+      bash: 4.3.48
+
+    - language: R
+      R: 3.4.3
