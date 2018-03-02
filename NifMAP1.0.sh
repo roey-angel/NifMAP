@@ -68,7 +68,7 @@ java -jar ${FRAMEBOTPATH}/FrameBot.jar framebot -N -l 30 -i 0.4 -o ${inputReads%
 # 6. Filter out homologous genes (bchL; chlL; bchX; parA) using HMM:
 # Corrected AA sequences are in ${inputReads%.fa}_corr_prot.fasta
 # Screen with hmm to identify all hits
-hmmscan --domtblout ${WORKFOLDER}/hmmOut.out -o ${WORKFOLDER}/junk_NifH_ChlL_bchX ${RESOURCEFOLDER}/NifH_ChlL_bchX.hmm ${WORKFOLDER}/${inputReads%.fa}_corr_prot.fasta
+hmmscan --domtblout ${WORKFOLDER}/hmmOut.out -o ${WORKFOLDER}/junk_NifH_ChlL_bchX ${RESOURCEFOLDER}/nifH_chlL_bchX.hmm ${WORKFOLDER}/${inputReads%.fa}_corr_prot.fasta
 Rscript --vanilla < ${HOMEFOLDER}/nifH_bch_hmmEvaluation.R ${WORKFOLDER}/hmmOut.out
 mv nifH_bch_hmmEvaluation.pdf ${RESULTSFOLDER}
 cat hmmOut.out | awk 'NR>3{if($8>bitarray[$4]){bitarray[$4]=$8;outArray[$4]=$1"\t"$4}}END{for(entry in outArray){print outArray[entry]}}' > assignments.txt
