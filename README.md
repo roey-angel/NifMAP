@@ -1,7 +1,5 @@
 # NifMAP
 
-[![Build Status](https://travis-ci.org/roey-angel/NifMAP.svg?branch=master)](https://travis-ci.org/roey-angel/NifMAP)
-
 ## NifH MiSeq Illumina amplicon Analysis Pipeline 
 
 A bioinformatics pipeline for processing nifH amplicon datasets.
